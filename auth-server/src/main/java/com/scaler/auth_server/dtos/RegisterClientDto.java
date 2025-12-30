@@ -1,17 +1,9 @@
 package com.scaler.auth_server.dtos;
 
-import lombok.Getter;
-import lombok.Setter;
+import java.util.List;
 
-@Getter
-@Setter
-public class RegisterClientDto {
-  private String clientId;
-  private String clientSecret;
-  private String clientName;
-  private String clientAuthenticationMethods;
-  private String authorizationGrantTypes;
-  private String redirectUri;
-  private String postLogoutRedirectUri;
-  private String scopes;
+public record RegisterClientDto(String clientId, String clientSecret, String clientName,
+    List<String> clientAuthenticationMethods, List<String> authorizationGrantTypes,
+    List<String> redirectUris, List<String> postLogoutRedirectUris, List<String> scopes,
+    boolean requireAuthorizationConsent) {
 }
