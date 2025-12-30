@@ -1,5 +1,6 @@
 package com.scaler.auth_server.services;
 
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.scaler.auth_server.dtos.RegisterUserDto;
@@ -33,8 +34,8 @@ public class AppUserService implements IAppUserService {
 
   @Override
   public AppUser getAppUserByEmail(String email) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'getAppUserByEmail'");
+    return appUserRepository.findByEmail(email).orElseThrow(
+        () -> new UsernameNotFoundException("User with email " + email + " not found"));
   }
 
 
