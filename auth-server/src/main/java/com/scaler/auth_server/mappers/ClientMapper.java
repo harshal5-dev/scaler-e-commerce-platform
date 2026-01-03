@@ -18,10 +18,10 @@ public final class ClientMapper {
 
   private ClientMapper() {}
 
-  public static RegisteredClient toRegisteredClient(RegisterClientDto registerClientDto) {
+  public static RegisteredClient toRegisteredClient(RegisterClientDto registerClientDto,
+      String clientId, String hashedSecret) {
     RegisteredClient.Builder builder = RegisteredClient.withId(UUID.randomUUID().toString())
-        .clientId(registerClientDto.clientId()).clientSecret(registerClientDto.clientSecret())
-        .clientName(registerClientDto.clientName())
+        .clientId(clientId).clientSecret(hashedSecret).clientName(registerClientDto.clientName())
         .clientAuthenticationMethods(
             methods -> safeList(registerClientDto.clientAuthenticationMethods())
                 .forEach(m -> methods.add(resolveClientAuthenticationMethod(m))))
@@ -46,12 +46,13 @@ public final class ClientMapper {
     Set<String> postLogoutUris = commaSeparatedToSet(client.getPostLogoutRedirectUris());
     Set<String> scopes = commaSeparatedToSet(client.getScopes());
 
-    return new RegisterClientResponseDto(client.getClientId(), client.getClientName(), authMethods,
-        grantTypes, redirectUris, postLogoutUris, scopes);
+    return new RegisterClientResponseDto(client.getClientId(), client.getPlainSecret(),
+        client.getClientName(), authMethods, grantTypes, redirectUris, postLogoutUris, scopes);
   }
 
   private static List<String> safeList(List<String> source) {
     return CollectionUtils.isEmpty(source) ? List.of() : source;
+
   }
 
   private static Set<String> commaSeparatedToSet(String value) {
