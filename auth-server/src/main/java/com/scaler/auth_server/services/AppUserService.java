@@ -38,6 +38,4 @@ public class AppUserService implements IAppUserService {
         () -> new UsernameNotFoundException("User with email " + email + " not found"));
   }
 
-
-
 }
