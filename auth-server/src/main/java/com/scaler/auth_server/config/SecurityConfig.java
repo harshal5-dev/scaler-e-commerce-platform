@@ -28,6 +28,7 @@ import org.springframework.security.oauth2.server.resource.web.BearerTokenResolv
 import org.springframework.security.oauth2.server.resource.web.DefaultBearerTokenResolver;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
+import org.springframework.web.cors.CorsConfigurationSource;
 import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jose.jwk.RSAKey;
 import com.nimbusds.jose.jwk.source.ImmutableJWKSet;
@@ -37,10 +38,14 @@ import com.scaler.auth_server.exception.CustomAccessDeniedHandler;
 import com.scaler.auth_server.exception.CustomBasicAuthenticationEntryPoint;
 import com.scaler.auth_server.security.AppUsernamePwdAuthenticationProvider;
 import jakarta.servlet.http.Cookie;
+import lombok.RequiredArgsConstructor;
 
 @Configuration
 @EnableWebSecurity
+@RequiredArgsConstructor
 public class SecurityConfig {
+
+  private final CorsConfigurationSource corsConfigurationSource;
 
   @Bean
   @Order(1)
@@ -65,7 +70,7 @@ public class SecurityConfig {
 
     httpSecurity
         .sessionManagement(smc -> smc.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
-    httpSecurity.cors(AbstractHttpConfigurer::disable);
+    httpSecurity.cors(cors -> cors.configurationSource(corsConfigurationSource));
     httpSecurity.csrf(AbstractHttpConfigurer::disable);
     httpSecurity.authorizeHttpRequests(authorizeRequests -> authorizeRequests
         .requestMatchers("/api/auth/register", "/api/auth/login").permitAll().anyRequest()

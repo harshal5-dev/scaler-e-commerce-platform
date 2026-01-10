@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 
 import { ThemeProvider } from "@/components/theme-provider"
 import { DashboardLayout } from "@/components/layout"
-import { Home, Login, Dashboard, Profile } from "@/pages"
+import { Home, Login, Register, Dashboard, Profile } from "@/pages"
 
 export function App() {
   return (
@@ -11,6 +11,7 @@ export function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           
           {/* Dashboard routes with shared layout */}
           <Route element={<DashboardLayout />}>
