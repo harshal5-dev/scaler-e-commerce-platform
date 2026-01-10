@@ -42,7 +42,6 @@ const clients = [
     id: "1",
     name: "E-Commerce Web App",
     clientId: "ecom_web_abc123xyz789",
-    clientSecret: "",
     status: "active",
     grantTypes: ["authorization_code", "refresh_token"],
     redirectUris: ["https://shop.example.com/callback"],
@@ -54,7 +53,6 @@ const clients = [
     id: "2",
     name: "Mobile App iOS",
     clientId: "mobile_ios_def456uvw012",
-    clientSecret: "",
     status: "active",
     grantTypes: ["authorization_code", "refresh_token", "pkce"],
     redirectUris: ["com.example.app://oauth/callback"],
@@ -66,7 +64,6 @@ const clients = [
     id: "3",
     name: "Admin Dashboard",
     clientId: "admin_dash_ghi789rst345",
-    clientSecret: "",
     status: "inactive",
     grantTypes: ["client_credentials"],
     redirectUris: ["https://admin.example.com/auth"],
@@ -245,7 +242,7 @@ export function Dashboard() {
                       <div className="flex items-center gap-2 bg-muted/50 rounded-lg px-3 py-2 font-mono text-xs">
                         <span className="flex-1 truncate">
                           {visibleSecrets[client.id]
-                            ? client.clientSecret
+                            ? ""
                             : "••••••••••••••••••••••••"}
                         </span>
                         <button
@@ -259,7 +256,7 @@ export function Dashboard() {
                           )}
                         </button>
                         <button
-                          onClick={() => copyToClipboard(client.clientSecret, `${client.id}-secret`)}
+                          onClick={() => copyToClipboard("", `${client.id}-secret`)}
                           className="text-muted-foreground hover:text-foreground transition-colors shrink-0"
                         >
                           {copiedId === `${client.id}-secret` ? (
