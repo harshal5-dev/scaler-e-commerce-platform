@@ -61,6 +61,7 @@ public class AuthController {
     JwtClaimsSet claims = JwtClaimsSet.builder().subject(principal.getUsername()).issuedAt(issuedAt)
         .expiresAt(expiresAt).claim("userId", principal.getId()).build();
 
+
     String token = jwtEncoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();
 
     ResponseCookie cookie = ResponseCookie.from("auth_token", token).httpOnly(true).secure(true)
