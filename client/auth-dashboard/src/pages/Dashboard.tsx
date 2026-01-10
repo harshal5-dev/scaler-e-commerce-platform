@@ -42,7 +42,7 @@ const clients = [
     id: "1",
     name: "E-Commerce Web App",
     clientId: "ecom_web_abc123xyz789",
-    clientSecret: "sk_live_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+    clientSecret: "",
     status: "active",
     grantTypes: ["authorization_code", "refresh_token"],
     redirectUris: ["https://shop.example.com/callback"],
@@ -66,7 +66,7 @@ const clients = [
     id: "3",
     name: "Admin Dashboard",
     clientId: "admin_dash_ghi789rst345",
-    clientSecret: "sk_live_zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz",
+    clientSecret: "",
     status: "inactive",
     grantTypes: ["client_credentials"],
     redirectUris: ["https://admin.example.com/auth"],
@@ -173,7 +173,7 @@ export function Dashboard() {
                 <CardHeader className="pb-4">
                   <div className="flex items-start justify-between">
                     <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/20 to-chart-3/20 flex items-center justify-center group-hover:scale-105 transition-transform">
+                      <div className="w-12 h-12 rounded-xl bg-linear-to-br from-primary/20 to-chart-3/20 flex items-center justify-center group-hover:scale-105 transition-transform">
                         <IconApps className="w-6 h-6 text-primary" />
                       </div>
                       <div>
