@@ -54,7 +54,7 @@ const clients = [
     id: "2",
     name: "Mobile App iOS",
     clientId: "mobile_ios_def456uvw012",
-    clientSecret: "sk_live_yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+    clientSecret: "",
     status: "active",
     grantTypes: ["authorization_code", "refresh_token", "pkce"],
     redirectUris: ["com.example.app://oauth/callback"],
